@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageview"
+        android:id="@+id/MainPoster"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginLeft="10dp"
@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Name"
+            android:id="@+id/MovieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -29,7 +29,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/Date"
+            android:id="@+id/ReleaseYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

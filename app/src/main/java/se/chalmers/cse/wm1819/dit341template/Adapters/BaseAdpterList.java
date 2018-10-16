@@ -58,12 +58,12 @@ public class BaseAdpterList extends BaseAdapter {
         convertView = inflater.inflate(R.layout.row_list, null);
 
 
-        TextView MovieTitle=(TextView)convertView.findViewById(R.id.Name);
-        TextView ReleaseYear=(TextView)convertView.findViewById(R.id.Date);
+        TextView MovieTitle=(TextView)convertView.findViewById(R.id.MovieTitle);
+        TextView ReleaseYear=(TextView)convertView.findViewById(R.id.ReleaseYear);
 
         MovieTitle.setText(Movies.get(position).getMovieTitle());
         ReleaseYear.setText(Integer.toString(Movies.get(position).getReleaseYear()));
-        new DownloadImageTask((ImageView) convertView.findViewById(R.id.imageview)).execute(Movies.get(position).getMainPoster());
+        new DownloadImageTask((ImageView) convertView.findViewById(R.id.MainPoster)).execute(Movies.get(position).getMainPoster());
 
         ImageView deleteBtn = convertView.findViewById(R.id.Delete);
         ImageView editBtn = convertView.findViewById(R.id.Edit);
