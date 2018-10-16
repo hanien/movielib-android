@@ -1,4 +1,5 @@
 package se.chalmers.cse.wm1819.dit341template.Adapters;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,14 +37,16 @@ public class BaseAdpterList extends BaseAdapter {
     Context mContext;
     List <Movie> Movies;
     private static final String HTTP_PARAM = "httpResponse";
+    private Activity activity;
 
-    public BaseAdpterList(Movie[] movies,Context mContext)
+    public BaseAdpterList(Movie[] movies, Context mContext, Activity activity)
     {
         this.mContext = mContext;
         this.Movies = new ArrayList<>();
         for(int i = 0 ; i < movies.length ; i++){
             this.Movies.add(movies[i]);
         }
+        this.activity = activity;
     }
 
     @Override
@@ -86,6 +89,8 @@ public class BaseAdpterList extends BaseAdapter {
                 Snackbar.make(v, "you clicked on delete button for the movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 DeleteMovie(Movies.get(position).get_id());
+                activity.finish();
+                activity.startActivity(activity.getIntent());
             }
         });
         editBtn.setOnClickListener(new View.OnClickListener(){

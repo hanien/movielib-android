@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void GetMovies(Activity activity) {
+    private void GetMovies(final Activity activity) {
         String url = getString(R.string.server_url) + "/api/Movies";
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                         final Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
 
-                        baseAdpterList=new BaseAdpterList(Movies,mcontext);
+                        baseAdpterList=new BaseAdpterList(Movies,mcontext,activity);
                         lv.setAdapter(baseAdpterList);
                     }
                 }, new Response.ErrorListener() {
