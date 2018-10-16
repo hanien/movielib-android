@@ -2,4 +2,15 @@
     <string name="app_name">DIT341Template</string>
     <string name="btn_new_activity">New Activity</string>
     <string name="btn_get_http">Get Camels</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="movieTitleFormLabel">Movie Title:</string>
+    <string name="releaseYearFormLabel">Release Year:</string>
+    <string name="plotDescriptionFormLabel">Plot Description:</string>
+    <string name="directorFormLabel">Director:</string>
+    <string name="trailerFormLabel">Trailer:</string>
+    <string name="mainPosterFormLabel">Main Poster:</string>
+    <string name="mainActorsFormLabel">Main Actors:</string>
+    <string name="createMovieButtonText">Create Movie</string>
+
 </resources>

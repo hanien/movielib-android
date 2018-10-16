@@ -1,20 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    android:scrollbars="vertical">
 
-    <TextView
-        android:id="@+id/displayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/movieTitleFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movieTitleFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/movieTitleInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <TextView
+            android:id="@+id/releaseyearFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/releaseYearFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/releaseYearInput"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <TextView
+            android:id="@+id/plotDescriptionFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plotDescriptionFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/plotDescriptionInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="5"></EditText>
+
+        <TextView
+            android:id="@+id/directorFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/directorFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/directorInput"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <TextView
+            android:id="@+id/trailerFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trailerFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/trailerInput"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <TextView
+            android:id="@+id/mainPosterFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainPosterFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/mainPosterInput"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <TextView
+            android:id="@+id/mainActorsFormLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainActorsFormLabel"
+            android:textSize="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/mainActorsInput"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"></EditText>
+
+        <Button
+            android:id="@+id/createMovieButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/createMovieButtonText" />
+
+    </LinearLayout>
+</ScrollView>

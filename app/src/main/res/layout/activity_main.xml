@@ -30,4 +30,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!--<fragment
+        android:id="@+id/createMovieFrag"
+        android:name="se.chalmers.cse.wm1819.dit341template.Fragments.CreateMovieFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="2" />-->
+
+
 </android.support.constraint.ConstraintLayout>
