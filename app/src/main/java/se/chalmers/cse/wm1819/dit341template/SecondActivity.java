@@ -95,6 +95,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("ERROR.RESPONSE", error.toString());
+                Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
