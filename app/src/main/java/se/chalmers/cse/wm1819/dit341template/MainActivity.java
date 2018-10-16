@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "you clicked on add float button", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(mcontext, SecondActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
 
-                        Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
+                        final Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
 
                         baseAdpterList=new BaseAdpterList(Movies,mcontext);
                         lv.setAdapter(baseAdpterList);

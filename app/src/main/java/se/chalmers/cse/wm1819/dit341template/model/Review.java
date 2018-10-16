@@ -4,7 +4,7 @@ public class Review {
     private int Rating;
     private String ReviewText;
     private String User;
-    private Movie Movie;
+    private String Movie_id;
 
     public Review(){
     }
@@ -33,11 +33,11 @@ public class Review {
         User = user;
     }
 
-    public se.chalmers.cse.wm1819.dit341template.model.Movie getMovie() {
-        return Movie;
+    public String Movie_id() {
+        return Movie_id;
     }
 
-    public void setMovie(se.chalmers.cse.wm1819.dit341template.model.Movie movie) {
-        Movie = movie;
+    public void Movie_id(String movie) {
+        Movie_id = movie;
     }
 }
