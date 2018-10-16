@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -65,32 +67,7 @@ public class SecondActivity extends AppCompatActivity {
         final String mainActorsText = mainActors.getText().toString();
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //GSON allows to parse a JSON string/JSONObject directly into a user-defined class
-                        Gson gson = new Gson();
-
-                        String dataArray = null;
-                        try {
-                            dataArray = response.getString("Movies");
-                        } catch (JSONException e) {
-                            Log.e(this.getClass().toString(), e.getMessage());
-                        }
-
-                        Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                });
+        //RequestQueue queue = Volley.newRequestQueue(this);
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -105,20 +82,24 @@ public class SecondActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(url, jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                VolleyLog.wtf(response.toString(), "utf-8");
+                System.out.println(response);
+                //VolleyLog.wtf(response.toString(), "utf-8");
                 Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
-            public int getMethod() {
-                return Request.Method.POST;
+            public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
+                toast.show();
             }
-        };
+        });
 
         //The request queue makes sure that HTTP requests are processed in the right order.
-        queue.add(jsonObjectRequest);
+        RequestQueue rq = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();
+        rq.add(jsonObjectRequest);
     }
 }

@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.chalmers.cse.wm1819.dit341template.Adapters.BaseAdpterList;
-import se.chalmers.cse.wm1819.dit341template.Fragments.CreateMovieFragment;
 import se.chalmers.cse.wm1819.dit341template.model.Movie;
 
 
@@ -60,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         String url = getString(R.string.server_url) + "/api/Movies";
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
-        RequestQueue queue = Volley.newRequestQueue(this);
+        //RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue rq = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -93,6 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         //The request queue makes sure that HTTP requests are processed in the right order.
-        queue.add(jsonObjectRequest);
+        rq.add(jsonObjectRequest);
     }
 }
