@@ -1,11 +1,17 @@
 package se.chalmers.cse.wm1819.dit341template;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,38 +20,42 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import se.chalmers.cse.wm1819.dit341template.model.Camel;
+import java.util.ArrayList;
+import java.util.List;
+
+import se.chalmers.cse.wm1819.dit341template.Adapters.BaseAdpterList;
+import se.chalmers.cse.wm1819.dit341template.model.Movie;
 
 
 public class MainActivity extends AppCompatActivity {
 
     //Field for parameter name
     public static final String HTTP_PARAM = "httpResponse";
-
+    private  ListView lv;
+    private Context mcontext;
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lv=(ListView)findViewById(R.id.listview);
+        mcontext = this;
+        GetMovies(this);
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "you clicked on add float button", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
-    public void onClickNewActivity (View view) {
-        TextView mCamelView = findViewById(R.id.camelTextView);
-
-        //Starts a new activity, providing the text from my HTTP text field as an input
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
-        startActivity(intent);
-    }
-
-    public void onClickGetCamels (View view) {
-        //Get the text view in which we will show the result.
-        final TextView mCamelView = findViewById(R.id.camelTextView);
-
-        String url = getString(R.string.server_url) + "/api/camels";
+    private void GetMovies(Activity activity) {
+        String url = getString(R.string.server_url) + "/api/Movies";
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -58,30 +68,25 @@ public class MainActivity extends AppCompatActivity {
                         Gson gson = new Gson();
 
                         String dataArray = null;
-
+                        BaseAdpterList baseAdpterList;
                         try {
-                            dataArray = response.getString("data");
+                            dataArray = response.getString("Movies");
                         } catch (JSONException e) {
                             Log.e(this.getClass().toString(), e.getMessage());
                         }
 
-                        StringBuilder camelString = new StringBuilder();
-                        camelString.append("This is the list of my camels: \n");
 
-                        Camel[] camels = gson.fromJson(dataArray, Camel[].class);
+                        Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
 
-                        for (Camel current : camels) {
-                            camelString.append("Camel is " + current.color + " at "
-                                    + current.position + "\n");
-                        }
-
-                        mCamelView.setText(camelString.toString());
+                        baseAdpterList=new BaseAdpterList(Movies,mcontext);
+                        lv.setAdapter(baseAdpterList);
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        mCamelView.setText("Error! " + error.toString());
+                        Toast toast = Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                 });
 
