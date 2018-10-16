@@ -19,6 +19,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,18 +86,22 @@ public class SecondActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println(response);
-                //VolleyLog.wtf(response.toString(), "utf-8");
-                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-                //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                Log.d("TAG", response.toString());
+                Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
-                toast.show();
+                Log.d("ERROR.RESPONSE", error.toString());
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                final Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+        };
 
         //The request queue makes sure that HTTP requests are processed in the right order.
         RequestQueue rq = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();
