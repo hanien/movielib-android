@@ -1,12 +1,12 @@
 package se.chalmers.cse.wm1819.dit341template.model;
 
 public class Review {
-    public int Rating;
-    public String ReviewText;
-    public String User;
-    public Movie Movie;
+    private int Rating;
+    private String ReviewText;
+    private String User;
+    private Movie Movie;
 
-     Review(){
+    public Review(){
     }
 
     public int getRating() {

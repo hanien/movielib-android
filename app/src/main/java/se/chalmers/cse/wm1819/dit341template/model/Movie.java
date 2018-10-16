@@ -1,16 +1,32 @@
 package se.chalmers.cse.wm1819.dit341template.model;
 
 public class Movie {
-    public int ReleaseYear;
-    public  String MovieTitle;
-    public  String PlotDescription;
-    public String Director;
-    public String Trailer;
-    public String MainPoster;
-    public String[] MainActors;
-    public String _id;
+    private int ReleaseYear;
+    private  String MovieTitle;
+    private  String PlotDescription;
+    private String Director;
+    private String Trailer;
+    private String MainPoster;
+    private String[] MainActors;
+    private String _id;
 
-    Movie(){
+    public Movie(){
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String[] getMainActors() {
+        return MainActors;
+    }
+
+    public void setMainActors(String[] mainActors) {
+        MainActors = mainActors;
+    }
+
+    public String get_id() {
+        return _id;
     }
 
     public int getReleaseYear() {

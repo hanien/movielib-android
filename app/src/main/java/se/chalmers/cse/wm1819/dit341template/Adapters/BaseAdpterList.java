@@ -58,11 +58,11 @@ public class BaseAdpterList extends BaseAdapter {
         convertView = inflater.inflate(R.layout.row_list, null);
 
 
-        TextView name=(TextView)convertView.findViewById(R.id.Name);
-        TextView phone=(TextView)convertView.findViewById(R.id.Date);
+        TextView MovieTitle=(TextView)convertView.findViewById(R.id.Name);
+        TextView ReleaseYear=(TextView)convertView.findViewById(R.id.Date);
 
-        name.setText(Movies.get(position).MovieTitle);
-        phone.setText(Integer.toString(Movies.get(position).getReleaseYear()));
+        MovieTitle.setText(Movies.get(position).getMovieTitle());
+        ReleaseYear.setText(Integer.toString(Movies.get(position).getReleaseYear()));
         new DownloadImageTask((ImageView) convertView.findViewById(R.id.imageview)).execute(Movies.get(position).getMainPoster());
 
         ImageView deleteBtn = convertView.findViewById(R.id.Delete);
@@ -72,7 +72,7 @@ public class BaseAdpterList extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //TODO
-                Snackbar.make(v, "you clicked on delete button for the movie " + Movies.get(position).MovieTitle, Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "you clicked on delete button for the movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -80,7 +80,7 @@ public class BaseAdpterList extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //TODO
-                Snackbar.make(v, "you clicked on edit button for the movie " + Movies.get(position).MovieTitle, Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "you clicked on edit button for the movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -88,7 +88,7 @@ public class BaseAdpterList extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 //TODO
-                Snackbar.make(view, "you clicked on a movie " + Movies.get(position).MovieTitle, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "you clicked on a movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
