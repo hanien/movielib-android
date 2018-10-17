@@ -1,5 +1,6 @@
 package se.chalmers.cse.wm1819.dit341template.Adapters;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,13 +18,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.chalmers.cse.wm1819.dit341template.MovieDetails;
 import se.chalmers.cse.wm1819.dit341template.R;
+import se.chalmers.cse.wm1819.dit341template.SecondActivity;
 import se.chalmers.cse.wm1819.dit341template.model.Movie;
 
 public class BaseAdpterList extends BaseAdapter {
 
     Context mContext;
     List <Movie> Movies;
+    public static String movieId = "movieId";
 
     public BaseAdpterList(Movie[] movies,Context mContext)
     {
@@ -87,9 +91,13 @@ public class BaseAdpterList extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String movieID = Movies.get(position).get_id();
+                Intent intent = new Intent(mContext, MovieDetails.class);
+                intent.putExtra(movieId, movieID);
+                mContext.startActivity(intent);
                 //TODO
-                Snackbar.make(view, "you clicked on a movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "you clicked on a movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
         return convertView;

@@ -12,5 +12,6 @@
     <string name="mainPosterFormLabel">Main Poster:</string>
     <string name="mainActorsFormLabel">Main Actors:</string>
     <string name="createMovieButtonText">Create Movie</string>
+    <string name="title_activity_movie_details">MovieDetails</string>
 
 </resources>
