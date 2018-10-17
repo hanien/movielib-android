@@ -142,7 +142,7 @@ public class MovieDetails extends Activity {
                     public void onResponse(JSONObject response) {
                         String dataArray = null;
                         try {
-                            dataArray = response.getString("Reviews");
+                            dataArray = response.getString("data");
                         } catch (JSONException e) {
                             Log.e(this.getClass().toString(), e.getMessage());
                         }
