@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.chalmers.cse.wm1819.dit341template.MovieDetails;
 import se.chalmers.cse.wm1819.dit341template.R;
 import se.chalmers.cse.wm1819.dit341template.ReviewActivity;
 import se.chalmers.cse.wm1819.dit341template.SecondActivity;
@@ -36,6 +37,7 @@ public class BaseAdpterList extends BaseAdapter {
 
     Context mContext;
     List <Movie> Movies;
+    public static String movieId = "movieId";
     private static final String HTTP_PARAM = "httpResponse";
     private Activity activity;
 
@@ -104,8 +106,9 @@ public class BaseAdpterList extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, ReviewActivity.class);
-                intent.putExtra(HTTP_PARAM,Movies.get(position).get_id());
+                String movieID = Movies.get(position).get_id();
+                Intent intent = new Intent(mContext, MovieDetails.class);
+                intent.putExtra(movieId, movieID);
                 mContext.startActivity(intent);
             }
         });
