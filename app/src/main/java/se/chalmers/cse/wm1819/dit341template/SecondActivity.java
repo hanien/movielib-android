@@ -88,11 +88,14 @@ public class SecondActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Log.d("TAG", response.toString());
                 Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("ERROR.RESPONSE", error.toString());
+                Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
