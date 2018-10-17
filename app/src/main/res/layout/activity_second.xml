@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/movieTitleFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/movieTitleInput"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/releaseYearFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/releaseYearInput"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plotDescriptionFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/plotDescriptionInput"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/directorFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/directorInput"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trailerFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/trailerInput"
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mainPosterFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/mainPosterInput"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mainActorsFormLabel"
-            android:textSize="10pt"></TextView>
+            android:textSize="25sp"></TextView>
 
         <EditText
             android:id="@+id/mainActorsInput"

@@ -13,5 +13,9 @@
     <string name="mainActorsFormLabel">Main Actors:</string>
     <string name="createMovieButtonText">Create Movie</string>
     <string name="title_activity_movie_details">MovieDetails</string>
+    <string name="movieDetailsReleaseYearLabel">Release Year:</string>
+    <string name="movieDetailsPlotLabel">Plot Description:</string>
+    <string name="movieDetailsDirectorLabel">Director:</string>
+    <string name="movieDetailsMainActorsLabel">Main Actors:</string>
 
 </resources>
