@@ -1,4 +1,5 @@
 package se.chalmers.cse.wm1819.dit341template.Adapters;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,14 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -20,6 +29,7 @@ import java.util.List;
 
 import se.chalmers.cse.wm1819.dit341template.MovieDetails;
 import se.chalmers.cse.wm1819.dit341template.R;
+import se.chalmers.cse.wm1819.dit341template.ReviewActivity;
 import se.chalmers.cse.wm1819.dit341template.SecondActivity;
 import se.chalmers.cse.wm1819.dit341template.model.Movie;
 
@@ -28,14 +38,17 @@ public class BaseAdpterList extends BaseAdapter {
     Context mContext;
     List <Movie> Movies;
     public static String movieId = "movieId";
+    private static final String HTTP_PARAM = "httpResponse";
+    private Activity activity;
 
-    public BaseAdpterList(Movie[] movies,Context mContext)
+    public BaseAdpterList(Movie[] movies, Context mContext, Activity activity)
     {
         this.mContext = mContext;
         this.Movies = new ArrayList<>();
         for(int i = 0 ; i < movies.length ; i++){
             this.Movies.add(movies[i]);
         }
+        this.activity = activity;
     }
 
     @Override
@@ -75,9 +88,11 @@ public class BaseAdpterList extends BaseAdapter {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //TODO
                 Snackbar.make(v, "you clicked on delete button for the movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                DeleteMovie(Movies.get(position).get_id());
+                Movies.remove(position);
+                notifyDataSetChanged();
             }
         });
         editBtn.setOnClickListener(new View.OnClickListener(){
@@ -95,9 +110,6 @@ public class BaseAdpterList extends BaseAdapter {
                 Intent intent = new Intent(mContext, MovieDetails.class);
                 intent.putExtra(movieId, movieID);
                 mContext.startActivity(intent);
-                //TODO
-                /*Snackbar.make(view, "you clicked on a movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
             }
         });
         return convertView;
@@ -113,18 +125,44 @@ public class BaseAdpterList extends BaseAdapter {
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
+            if(urldisplay!= null){
+                try {
+                    InputStream in = new java.net.URL(urldisplay).openStream();
+                    mIcon11 = BitmapFactory.decodeStream(in);
+                } catch (Exception e) {
+                    Log.e("Error", e.getMessage());
+                    e.printStackTrace();
+                }
             }
+
             return mIcon11;
         }
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
+    }
+
+    private void DeleteMovie(String Movie_id){
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url = mContext.getString(R.string.server_url) + "/api/admin/movies/" + Movie_id;
+        StringRequest dr = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Toast.makeText(mContext, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(mContext.getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
+                    }
+                }
+        );
+        queue.add(dr);
     }
 }

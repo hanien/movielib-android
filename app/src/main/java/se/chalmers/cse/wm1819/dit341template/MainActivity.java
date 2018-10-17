@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,13 +50,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(mcontext, SecondActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void GetMovies(Activity activity) {
+    private void GetMovies(final Activity activity) {
         String url = getString(R.string.server_url) + "/api/Movies";
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
@@ -78,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
 
-                        Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
+                        final Movie[] Movies = gson.fromJson(dataArray, Movie[].class);
 
-                        baseAdpterList=new BaseAdpterList(Movies,mcontext);
+                        baseAdpterList=new BaseAdpterList(Movies,mcontext,activity);
                         lv.setAdapter(baseAdpterList);
                     }
                 }, new Response.ErrorListener() {
