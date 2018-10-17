@@ -142,7 +142,7 @@ public class MovieDetails extends Activity {
                     public void onResponse(JSONObject response) {
                         String dataArray = null;
                         try {
-                            dataArray = response.getString("data");
+                            dataArray = response.getString("Reviews");
                         } catch (JSONException e) {
                             Log.e(this.getClass().toString(), e.getMessage());
                         }
@@ -150,8 +150,7 @@ public class MovieDetails extends Activity {
                         reviewString.append("This is the list of the reviews: \n");
                         Review[] reviews = new Gson().fromJson(dataArray, Review[].class);
                         for (int i = 0; i < reviews.length; i++) {
-                            reviewString.append("Review is " + " at "
-                                    + i + "\n");
+                            reviewString.append(reviews[i]); // "Review " + i + "\n"
                         }
                         tvMovieReviews.setText(reviewString.toString());
                     }
