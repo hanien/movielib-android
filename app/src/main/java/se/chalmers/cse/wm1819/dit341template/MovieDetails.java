@@ -3,10 +3,13 @@ package se.chalmers.cse.wm1819.dit341template;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +63,7 @@ public class MovieDetails extends Activity {
                     Log.e(this.getClass().toString(), e.getMessage());
                 }
 
-                Movie currentMovie = gson.fromJson(data, Movie.class);
+                final Movie currentMovie = gson.fromJson(data, Movie.class);
 
                 TextView tvTitle = (TextView)findViewById(R.id.movieDetailsMovieTitle);
                 tvTitle.setText(currentMovie.getMovieTitle());
@@ -82,6 +86,15 @@ public class MovieDetails extends Activity {
 
                 new DownloadImageTask((ImageView)findViewById(R.id.movieDetailsPoster)).execute(currentMovie.getMainPoster());
 
+                Button trailerButton = (Button)findViewById(R.id.movieDetailsTrailerButton);
+
+                trailerButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        getTrailer(currentMovie);
+                    }
+                });
+
                 Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
@@ -102,6 +115,14 @@ public class MovieDetails extends Activity {
         //The request queue makes sure that HTTP requests are processed in the right order.
         RequestQueue rq = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();
         rq.add(jsonObjectRequest);
+    }
+
+    public void getTrailer(Movie movie){
+        Uri uri = Uri.parse(movie.getTrailer());
+        uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        getApplicationContext().startActivity(intent);
     }
 
 
