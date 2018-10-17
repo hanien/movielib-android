@@ -150,7 +150,7 @@ public class MovieDetails extends Activity {
                         reviewString.append("This is the list of the reviews: \n");
                         Review[] reviews = new Gson().fromJson(dataArray, Review[].class);
                         for (int i = 0; i < reviews.length; i++) {
-                            reviewString.append(reviews[i]); // "Review " + i + "\n"
+                            reviewString.append(reviews[i].getReviewText() + "\nRating: " + reviews[i].getRating() + "\nBy: " + reviews[i].getUser() + "\n"); // "Review " + i + "\n"
                         }
                         tvMovieReviews.setText(reviewString.toString());
                     }
