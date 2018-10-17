@@ -89,8 +89,8 @@ public class BaseAdpterList extends BaseAdapter {
                 Snackbar.make(v, "you clicked on delete button for the movie " + Movies.get(position).getMovieTitle(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 DeleteMovie(Movies.get(position).get_id());
-                activity.finish();
-                activity.startActivity(activity.getIntent());
+                Movies.remove(position);
+                notifyDataSetChanged();
             }
         });
         editBtn.setOnClickListener(new View.OnClickListener(){
