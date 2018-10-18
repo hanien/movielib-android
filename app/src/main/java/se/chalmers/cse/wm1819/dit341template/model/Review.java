@@ -3,7 +3,7 @@ package se.chalmers.cse.wm1819.dit341template.model;
 public class Review {
     private int Rating;
     private String ReviewText;
-    private String User;
+    private String Username;
     private String Movie_id;
 
     public Review(){
@@ -26,11 +26,11 @@ public class Review {
     }
 
     public String getUser() {
-        return User;
+        return Username;
     }
 
     public void setUser(String user) {
-        User = user;
+        Username = user;
     }
 
     public String Movie_id() {
