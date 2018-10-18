@@ -1,5 +1,6 @@
 package se.chalmers.cse.wm1819.dit341template;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,20 +37,34 @@ import se.chalmers.cse.wm1819.dit341template.model.Movie;
 import se.chalmers.cse.wm1819.dit341template.model.Review;
 
 public class MovieDetails extends Activity {
+    FloatingActionButton fab;
+    private static final String HTTP_PARAM = "httpResponse";
+    private String movieId;
+    private Context mcontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-
+        Intent intent = getIntent();
+        mcontext = this;
+        movieId = intent.getStringExtra(BaseAdpterList.movieId);
         getSpecificMovie();
         getMovieReviews();
 
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mcontext, CreateReviewActivity.class);
+                intent.putExtra(HTTP_PARAM,movieId);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getSpecificMovie(){
-        Intent intent = getIntent();
-        String movieId = intent.getStringExtra(BaseAdpterList.movieId);
+
 
         String url = getString(R.string.server_url) + "/api/movies/" + movieId;
 

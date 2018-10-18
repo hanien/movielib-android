@@ -90,7 +90,14 @@ public class CreateReviewActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(),"error while trying to get information from database!",Toast.LENGTH_SHORT);
                         toast.show();
                     }
-                });
+                }) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        final Map<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        return headers;
+                    }
+                };
 
         queue.add(jsonObjReq);
     }

@@ -30,19 +30,11 @@
         </activity>
         <activity
             android:name=".MovieDetails"
-            android:label="@string/title_activity_movie_details"></activity>
-        <activity android:name=".ReviewActivity"
             android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".CreateReviewActivity"
-            android:parentActivityName=".ReviewActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+            </activity>
+        <activity
+            android:name=".CreateReviewActivity"
+            android:label=".ReviewActivity"></activity>
     </application>
 
 </manifest>

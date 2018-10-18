@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +28,6 @@ import java.util.List;
 
 import se.chalmers.cse.wm1819.dit341template.MovieDetails;
 import se.chalmers.cse.wm1819.dit341template.R;
-import se.chalmers.cse.wm1819.dit341template.ReviewActivity;
-import se.chalmers.cse.wm1819.dit341template.SecondActivity;
 import se.chalmers.cse.wm1819.dit341template.model.Movie;
 
 public class BaseAdpterList extends BaseAdapter {
