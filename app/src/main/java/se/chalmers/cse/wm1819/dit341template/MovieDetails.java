@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,7 @@ import se.chalmers.cse.wm1819.dit341template.Adapters.BaseAdpterList;
 import se.chalmers.cse.wm1819.dit341template.model.Movie;
 import se.chalmers.cse.wm1819.dit341template.model.Review;
 
-public class MovieDetails extends Activity {
+public class MovieDetails extends AppCompatActivity {
     FloatingActionButton fab;
     private static final String HTTP_PARAM = "httpResponse";
     private String movieId;
