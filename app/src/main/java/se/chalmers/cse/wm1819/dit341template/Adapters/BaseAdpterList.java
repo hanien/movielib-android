@@ -38,6 +38,7 @@ public class BaseAdpterList extends BaseAdapter {
     Context mContext;
     List <Movie> Movies;
     public static String movieId = "movieId";
+    public static String reviewId = "reviewId";
     private static final String HTTP_PARAM = "httpResponse";
     private Activity activity;
 
