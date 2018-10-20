@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void GetMovies(final Activity activity) {
-        String url = getString(R.string.server_url) + "/api/Movies";
+        String url = getString(R.string.server_url) + "/api/movies";
 
         //This uses Volley (Threading and a request queue is automatically handled in the background)
         //RequestQueue queue = Volley.newRequestQueue(this);
